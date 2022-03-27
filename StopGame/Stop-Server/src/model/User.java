@@ -7,9 +7,19 @@ public class User {
 	private String id;
 	public String type = "User";
 
+	private transient Game game;
+
 	public User(int amountPoint, boolean finish) {
 		this.amountPoint = amountPoint;
 		this.finish = finish;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
 	}
 
 	public String getId() {

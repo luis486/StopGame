@@ -2,16 +2,22 @@ package model;
 
 import java.util.Random;
 
+import communication.Session;
+
 public class Game {
 
     private char letter;
     private User[] users;
     private User win;
     public String type = "Game";
+    public Session sesionUno;
+    public Session sesionDos;
 
-    public Game() {
+    public Game(Session sesionUno, Session sesiondos) {
         letter = randomLetter();
         users = new User[2];
+        this.sesionUno = sesionUno;
+
     }
 
     public char getLetter() {
@@ -46,7 +52,7 @@ public class Game {
         }
     }
 
-    public static char randomLetter() {
+    public char randomLetter() {
         Random random = new Random();
 
         String setOfCharacters = "abcdefghijklmnopqrstuvwxyz";

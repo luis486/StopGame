@@ -16,20 +16,26 @@ public class Receptor extends Thread {
 		this.bReader = bReader;
 	}
 
-	@Override
-	public void run() {
+	public String readMessage() {
+		String msg = "";
 		try {
 			while (true) {
-				String msg = bReader.readLine();
+				msg = bReader.readLine();
 				if (msg == null) {
 					break;
 				}
 				listener.onMessage(session, msg);
+
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return msg;
+	}
 
+	@Override
+	public void run() {
+		readMessage();
 	}
 
 	// Metodo suscripcion

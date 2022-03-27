@@ -5,7 +5,7 @@ public class Message {
     public String type = "Message";
     public String message;
 
-    public Message() {
+    public Message(String message) {
         message = "";
     }
 
