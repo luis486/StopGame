@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class Game {
 
-    public char letter;
-    public User[] users;
-    User win;
+    private char letter;
+    private User[] users;
+    private User win;
+    public String type = "Game";
 
     public Game() {
         letter = randomLetter();

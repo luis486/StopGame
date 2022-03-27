@@ -57,30 +57,6 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 		}
 	}
 
-	public void sendBroadcast(String msg) {
-		for (Session session : sessions) {
-			session.getEmisor().sendMessage(msg);
-		}
-	}
-
-	public void sendDirectTwo(Session sessionTo, Session sessionFrom, String msg) {
-
-		for (Session session : sessions) {
-			if (session == sessionTo || session == sessionFrom) {
-				session.getEmisor().sendMessage(msg);
-			}
-		}
-	}
-
-	public void sendDirectOne(Session sessionTo, String msg) {
-
-		for (Session session : sessions) {
-			if (session.equals(sessionTo)) {
-				session.getEmisor().sendMessage(msg);
-			}
-		}
-	}
-
 	// Server Actions
 	@Override
 	public void onMessage(Session session, String msg) {
@@ -96,20 +72,18 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 
 			case "Game":
 				Game gameIn = gson.fromJson(msg, Game.class);
-				if (gameIn.isFull()) {
-					Session one = findSession(gameIn.getUsers()[0]);
-					Session two = findSession(gameIn.getUsers()[1]);
+				break;
+			case "Message":
+				Message message = gson.fromJson(msg, Message.class);
+				switch (message.getMessage()) {
 
-					sendDirectTwo(one, two, msg);
-				} else {
-					Session one = findSession(gameIn.getUsers()[0]);
-					sendDirectOne(one, msg);
 				}
 				break;
 
 			default:
 				break;
 		}
+
 	}
 
 	public void matchPlayers() {

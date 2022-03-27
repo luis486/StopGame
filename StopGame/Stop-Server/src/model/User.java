@@ -2,9 +2,10 @@ package model;
 
 public class User {
 
-	int amountPoint;
-	boolean finish;
-	String id;
+	private int amountPoint;
+	private boolean finish;
+	private String id;
+	public String type = "User";
 
 	public User(int amountPoint, boolean finish) {
 		this.amountPoint = amountPoint;
