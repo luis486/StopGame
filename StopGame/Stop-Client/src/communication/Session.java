@@ -24,14 +24,11 @@ public class Session extends Thread {
             instance = new Session();
         }
         return instance;
-
     }
 
     @Override
     public void run() {
-
         try {
-
             socket = new Socket(ip, port);
             OutputStream os = socket.getOutputStream();
             bw = new BufferedWriter(new OutputStreamWriter(os));
@@ -39,7 +36,6 @@ public class Session extends Thread {
             br = new BufferedReader(new InputStreamReader(is));
             Platform.runLater(() -> {
             });
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,23 +59,21 @@ public class Session extends Thread {
 
     }
 
-    public void waitingMessage() {
-
+    public String readMessage() {
         new Thread(() -> {
-
             try {
                 while (msg == null || msg.isEmpty()) {
 
                     msg = br.readLine();
 
                     System.out.println(msg);
-
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }).start();
+
+        return msg;
 
     }
 
@@ -88,13 +82,11 @@ public class Session extends Thread {
     }
 
     public void resetSesion() {
-
         try {
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void setInstance() {
