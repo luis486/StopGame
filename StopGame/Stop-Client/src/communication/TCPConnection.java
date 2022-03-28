@@ -11,9 +11,6 @@ public class TCPConnection extends Thread {
 
 	private static TCPConnection instance = null;
 
-	private TCPConnection() {
-	}
-
 	public static synchronized TCPConnection getInstance() {
 
 		if (instance == null) {

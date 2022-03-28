@@ -13,7 +13,7 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 
 	// SINGLETON
 	private static TPCServer instance = null;
-	public static final int DISPATCHER_PORT = 5000;
+	public static final int DISPATCHER_PORT = 6000;
 	String id;
 
 	private TPCServer() {

@@ -1,12 +1,6 @@
 package communication;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.Socket;
 
 import javafx.application.Platform;
@@ -47,7 +41,7 @@ public class Session extends Thread {
         try {
 
             socket = new Socket(ip, port);
-
+            
             OutputStream os = socket.getOutputStream();
             bw = new BufferedWriter(new OutputStreamWriter(os));
 
