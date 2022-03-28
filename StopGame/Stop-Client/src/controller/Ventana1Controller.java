@@ -28,6 +28,4 @@ public class Ventana1Controller {
     @FXML
     private Label letraLabel;
 
-    
-
 }

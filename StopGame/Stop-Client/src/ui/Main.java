@@ -13,12 +13,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Ventana1.fxml"));
-        Parent p = (Parent) fxmlloader.load();
-        Scene scene = new Scene(p);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("mainPane.fxml"));
+        Parent root = fxmlloader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.show();
 
     }
 
