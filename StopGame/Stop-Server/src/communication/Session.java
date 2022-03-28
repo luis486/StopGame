@@ -15,8 +15,12 @@ public class Session {
 	private Receptor receptor;
 	private Emisor emisor;
 	private boolean onGame;
+	private Socket socket;
 
 	public Session(Socket socket) {
+
+		this.socket = socket;
+
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 

@@ -18,21 +18,13 @@ public class Session extends Thread {
 
     public String msg;
 
-    public static synchronized Session getInstance(User user) {
+    public static Session getInstance() {
 
         if (instance == null) {
-
-            instance = new Session(user);
+            instance = new Session();
         }
         return instance;
 
-    }
-
-    private Session(User user) {
-
-        this.user = user;
-
-        msg = null;
     }
 
     @Override
@@ -41,15 +33,11 @@ public class Session extends Thread {
         try {
 
             socket = new Socket(ip, port);
-            
             OutputStream os = socket.getOutputStream();
             bw = new BufferedWriter(new OutputStreamWriter(os));
-
             InputStream is = socket.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));
-
             Platform.runLater(() -> {
-
             });
 
         } catch (IOException e) {
