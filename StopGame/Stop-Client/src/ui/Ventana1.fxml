@@ -22,7 +22,7 @@
       <Label layoutX="44.0" layoutY="306.0" text="Cosa" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="280.0" />
       <Button fx:id="stopBtn" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" styleClass="button5" stylesheets="@assets/syles/styles.css" text="¡STOP!" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="380.0">
          <font>
-            <Font size="24.0" />
+            <Font name="Arial Narrow Bold" size="24.0" />
          </font>
       </Button>
       <TextField fx:id="nameAnswer" layoutX="120.0" layoutY="126.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="126.0" />

@@ -32,7 +32,7 @@
       <Separator layoutX="167.0" layoutY="298.0" prefWidth="200.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="280.0" />
       <Label fx:id="ownNameResult" layoutX="275.0" layoutY="138.0" text="Texto (100)" AnchorPane.topAnchor="130.0" />
       <Label fx:id="opponentNameResult" layoutX="431.0" layoutY="138.0" text="Texto (50)" AnchorPane.topAnchor="130.0" />
-      <Label fx:id="ownAnimalResult" layoutX="275.0" layoutY="189.0" text="Texto (100)" />
+      <Label fx:id="myAnimalResult" layoutX="275.0" layoutY="189.0" text="Texto (100)" />
       <Label fx:id="opponentAnimalResult" layoutX="431.0" layoutY="189.0" text="Texto (50)" />
       <Label fx:id="ownLocationResult" layoutX="275.0" layoutY="249.0" text="Texto (100)" />
       <Label fx:id="opponentLocationResult" layoutX="431.0" layoutY="249.0" text="Texto (50)" />
