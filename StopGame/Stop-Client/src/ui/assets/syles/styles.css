@@ -1,0 +1,43 @@
+
+.linear-gradient-blue
+{
+    -fx-background-color: linear-gradient(to left,#00d4ff ,#00d4ff);
+}
+.linear-gradient-aquamarine
+{
+    -fx-background-color: linear-gradient(to left,#00d4ff ,#26a6c1);
+}
+.linear-gradient-rojitoconazul
+{
+    -fx-background-color :linear-gradient(to top left, #ed1835, #18c2e7);
+}
+.linear-gradient-violeta
+{
+    -fx-background-color: linear-gradient(to top left,#c985de ,#7842a2);
+}
+.button4
+{
+    -fx-background-color :linear-gradient(to top left, #2d23d0, #1b515c);
+    -fx-background-radius :  10 10 10 10;
+}
+.button5
+{
+    -fx-background-color :linear-gradient(to top left, #15c130, #18c2e7);
+    -fx-background-radius :  15 15 15 15;
+}
+.button6
+{
+    -fx-background-color :linear-gradient(to top left, #15c130, #18c2e7);
+    -fx-background-radius :  5 5 5 5;
+}
+.button7
+{
+    -fx-background-color :linear-gradient(to top left, #ed1835, #18c2e7);
+    -fx-background-radius :  5 5 5 5;
+}
+.button-menu
+{
+    -fx-background-color :linear-gradient(to top left, #2c2c91, #26a6c1);
+    -fx-background-radius :  0 0 0 0;
+}
+
