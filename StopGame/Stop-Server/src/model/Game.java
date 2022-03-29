@@ -25,7 +25,6 @@ public class Game {
         String j = gson.toJson(msg);
         System.out.println(c);
         sesionUno.getEmisor().sendMessage(j);
-
         sesionDos.getEmisor().sendMessage(j);
 
         new Thread(() -> {

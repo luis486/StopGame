@@ -83,7 +83,7 @@ public class Ventana2Controller {
 
     public void updateScreen() {
 
-        FXMLLoader fxmlA = new FXMLLoader(getClass().getResource("VentanaB.fxml"));
+        FXMLLoader fxmlA = new FXMLLoader(getClass().getResource("Ventana2.fxml"));
 
         Parent loadingPane;
         try {
