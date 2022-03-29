@@ -18,19 +18,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Game;
 import model.Message;
-import model.Response;
 
 public class Ventana2Controller {
-
-    private Response myResponse;
-
-    private Response yourResponse;
 
     private Stage stage;
 
     private Game game;
 
-    private Session session;
+    public Session session;
+
     @FXML
     private Label ownNameResult;
 

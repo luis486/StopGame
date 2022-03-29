@@ -31,7 +31,6 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 		return instance;
 	}
 
-	// GLOBAL
 	private ServerSocket server;
 	private ArrayList<Session> sessions;
 	public Queue<Session> sessionQueue;
