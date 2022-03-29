@@ -7,15 +7,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import model.User;
-
 public class Session {
 
-	private User user;
 	private Receptor receptor;
 	private Emisor emisor;
 	private boolean onGame;
-	private Socket socket;
+	public Socket socket;
 
 	public Session(Socket socket) {
 
@@ -53,14 +50,6 @@ public class Session {
 
 	public Receptor getReceptor() {
 		return this.receptor;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }

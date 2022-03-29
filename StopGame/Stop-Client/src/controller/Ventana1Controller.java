@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 
+import com.google.gson.Gson;
+
+import events.OnSendMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import model.Response;
 
 public class Ventana1Controller {
 
@@ -31,7 +36,17 @@ public class Ventana1Controller {
     private TextField objectAnswer;
 
     @FXML
-    private Label letraLabel;
+    public Label letraLabel;
+
+    public OnSendMessage osm;
+
+    public OnSendMessage getOsm() {
+        return this.osm;
+    }
+
+    public void setOsm(OnSendMessage osm) {
+        this.osm = osm;
+    }
 
     public boolean gameValidation(String name, String animal, String location, String object) {
         boolean complete = true;
@@ -52,6 +67,23 @@ public class Ventana1Controller {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Ventana2.fxml"));
         Parent root = fxmlloader.load();
         Scene scene = new Scene(root);
+
+    }
+
+    @FXML
+    public void stopGame(MouseEvent event) {
+        boolean validate = gameValidation(nameAnswer.getText(), animalAnswer.getText(), locationAnswer.getText(),
+                objectAnswer.getText());
+        if (validate) {
+            Response response = new Response(nameAnswer.getText(), animalAnswer.getText(), locationAnswer.getText(),
+                    objectAnswer.getText());
+            Gson gson = new Gson();
+            String respon = gson.toJson(response);
+            osm.onSendMessage(respon);
+
+        } else {
+
+        }
 
     }
 

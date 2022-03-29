@@ -7,14 +7,15 @@ import com.google.gson.Gson;
 import communication.Session;
 import controller.Ventana1Controller;
 import events.OnMessageReceived;
+import events.OnSendMessage;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.*;
-import model.Generic;
+import model.*;
 import javafx.scene.*;
 
-public class Main extends Application implements OnMessageReceived {
+public class Main extends Application implements OnMessageReceived, OnSendMessage {
 
     public static Stage stage;
     public static Session session;
@@ -22,6 +23,7 @@ public class Main extends Application implements OnMessageReceived {
     public Main() {
         session = Session.getInstance();
         session.setMessageReceived(this);
+
     }
 
     public static void main(String[] args) {
@@ -42,7 +44,6 @@ public class Main extends Application implements OnMessageReceived {
     }
 
     public void onConnection() {
-        // Stage primaryStage = new Stage();
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("mainPane.fxml"));
         Parent root;
         try {
@@ -60,6 +61,7 @@ public class Main extends Application implements OnMessageReceived {
     @Override
     public void onMessageReceived(String msg) {
         msg = session.getMsg();
+        System.out.println(msg);
         Gson gson = new Gson();
 
         Generic g = gson.fromJson(msg, Generic.class);
@@ -67,15 +69,19 @@ public class Main extends Application implements OnMessageReceived {
         if (g != null) {
             switch (g.getType()) {
                 case "Message":
+                    Message m = gson.fromJson(msg, Message.class);
+                    String j = m.getMessage();
                     Platform.runLater(() -> {
                         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Ventana1.fxml"));
                         Parent root;
                         try {
                             Ventana1Controller ven = new Ventana1Controller();
+                            ven.setOsm(this);
                             fxmlloader.setController(ven);
                             root = (Parent) fxmlloader.load();
                             Scene scene = new Scene(root);
                             stage.setScene(scene);
+                            ven.letraLabel.setText(j);
                             stage.show();
                             readMessage();
                         } catch (IOException e) {
@@ -88,6 +94,11 @@ public class Main extends Application implements OnMessageReceived {
         } else {
             System.out.println("nulo");
         }
+    }
+
+    @Override
+    public void onSendMessage(String msg) {
+        session.sendMessage(msg);
     }
 
 }

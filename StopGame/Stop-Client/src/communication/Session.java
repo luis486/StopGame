@@ -5,11 +5,9 @@ import java.net.Socket;
 
 import events.OnMessageReceived;
 import javafx.application.Platform;
-import model.User;
 
 public class Session extends Thread {
 
-    private User user;
     private static Session instance;
     private String ip = "127.0.0.1";
     private int port = 6000;
@@ -74,10 +72,6 @@ public class Session extends Thread {
 
         }).start();
 
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public void resetSesion() {

@@ -29,7 +29,7 @@
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Label>
-      <Button fx:id="stopBtn" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" styleClass="button5" stylesheets="@assets/syles/styles.css" text="¡STOP!" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="380.0">
+      <Button fx:id="stopBtn" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" onMouseClicked="#stopGame" styleClass="button5" stylesheets="@assets/syles/styles.css" text="¡STOP!" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="380.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

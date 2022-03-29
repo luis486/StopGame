@@ -123,7 +123,6 @@ public class Game {
             yourPoints += 50;
             myPoints += 50;
         } else {
-
             yourPoints += 100;
             myPoints += 100;
 
@@ -147,7 +146,6 @@ public class Game {
             myPoints += 100;
 
         }
-
     }
 
     public static char randomLetter() {

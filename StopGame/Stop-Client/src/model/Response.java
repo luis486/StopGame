@@ -5,15 +5,11 @@ public class Response {
     private String type = "Response";
 
     private String name;
-
     private String animal;
-
     private String location;
-
     private String object;
 
-    public Response(String type, String name, String animal, String location, String object) {
-        this.type = type;
+    public Response(String name, String animal, String location, String object) {
         this.name = name;
         this.animal = animal;
         this.location = location;

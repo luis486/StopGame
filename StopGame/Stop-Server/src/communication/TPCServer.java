@@ -34,7 +34,7 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 	// GLOBAL
 	private ServerSocket server;
 	private ArrayList<Session> sessions;
-	private Queue<Session> sessionQueue;
+	public Queue<Session> sessionQueue;
 	private Gson gson;
 
 	@Override
@@ -66,10 +66,7 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 
 		switch (obj.getType()) {
 			case "User":
-				User user = gson.fromJson(msg, User.class);
-				session.setUser(user);
-				sessionQueue.add(session);
-				matchPlayers();
+
 				break;
 
 			case "Game":
@@ -100,18 +97,20 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 
 	}
 
-	public Session findSession(User user) {
-		boolean validation = false;
-		Session temp = null;
-
-		for (int i = 0; i < sessions.size() && !validation; i++) {
-			if (sessions.get(i).getUser().getId().equals(user.getId())) {
-				temp = sessions.get(i);
-				validation = true;
-			}
-		}
-
-		return temp;
-	}
+	/*
+	 * public Session findSession(User user) {
+	 * boolean validation = false;
+	 * Session temp = null;
+	 * 
+	 * for (int i = 0; i < sessions.size() && !validation; i++) {
+	 * if (sessions.get(i).getUser().getId().equals(user.getId())) {
+	 * temp = sessions.get(i);
+	 * validation = true;
+	 * }
+	 * }
+	 * 
+	 * return temp;
+	 * }
+	 **/
 
 }

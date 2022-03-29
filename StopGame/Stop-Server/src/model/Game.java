@@ -6,15 +6,12 @@ import communication.Session;
 
 public class Game {
 
-    private User[] users;
-    private User win;
     public String type = "Game";
     public Session sesionUno;
     public Session sesionDos;
 
     public Game(Session sesionUno, Session sesionDos) {
 
-        users = new User[2];
         this.sesionUno = sesionUno;
         this.sesionDos = sesionDos;
         initGame();
@@ -26,7 +23,7 @@ public class Game {
         Message msg = new Message(Character.toString(c));
         Gson gson = new Gson();
         String j = gson.toJson(msg);
-
+        System.out.println(c);
         sesionUno.getEmisor().sendMessage(j);
 
         sesionDos.getEmisor().sendMessage(j);
@@ -54,30 +51,6 @@ public class Game {
             sesionDos.getReceptor().readMessage();
 
         }).start();
-    }
-
-    public User[] getUsers() {
-        return this.users;
-    }
-
-    public void setUsers(User[] users) {
-        this.users = users;
-    }
-
-    public User getWin() {
-        return this.win;
-    }
-
-    public void setWin(User win) {
-        this.win = win;
-    }
-
-    public boolean isFull() {
-        if (users[0] != null && users[1] != null) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public char randomLetter() {
