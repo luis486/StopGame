@@ -3,6 +3,7 @@ package communication;
 import java.io.*;
 import java.net.Socket;
 
+import events.OnMessageReceived;
 import javafx.application.Platform;
 import model.User;
 
@@ -16,10 +17,11 @@ public class Session extends Thread {
     private BufferedWriter bw;
     private BufferedReader br;
 
-    public String msg;
+    private OnMessageReceived messageReceived;
+
+    public String msg = "";
 
     public static Session getInstance() {
-
         if (instance == null) {
             instance = new Session();
         }
@@ -45,13 +47,10 @@ public class Session extends Thread {
     public void sendMessage(String line) {
 
         new Thread(() -> {
-
             try {
                 bw.write(line + "\n");
                 bw.flush();
-
             } catch (IOException e) {
-
                 e.printStackTrace();
             }
         }).start();
@@ -59,21 +58,21 @@ public class Session extends Thread {
 
     }
 
-    public String readMessage() {
+    public void readMessage() {
         new Thread(() -> {
+
             try {
                 while (msg == null || msg.isEmpty()) {
-
                     msg = br.readLine();
-
                     System.out.println(msg);
                 }
+                messageReceived.onMessageReceived(msg);
+                msg = "";
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }).start();
 
-        return msg;
+        }).start();
 
     }
 
@@ -91,6 +90,22 @@ public class Session extends Thread {
 
     public static void setInstance() {
         instance = null;
+    }
+
+    public String getMsg() {
+        return this.msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public OnMessageReceived getMessageReceived() {
+        return this.messageReceived;
+    }
+
+    public void setMessageReceived(OnMessageReceived messageReceived) {
+        this.messageReceived = messageReceived;
     }
 
 }

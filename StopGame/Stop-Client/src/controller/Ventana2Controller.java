@@ -44,10 +44,8 @@ public class Ventana2Controller {
     @FXML
     public void finishGame(MouseEvent event) {
 
-        Message m = new Message("leave");
-
+        Message m = new Message("Finish");
         Gson gson = new Gson();
-
         String msg = gson.toJson(m);
 
     }

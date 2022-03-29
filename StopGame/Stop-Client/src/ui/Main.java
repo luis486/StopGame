@@ -5,20 +5,23 @@ import java.io.IOException;
 import com.google.gson.Gson;
 
 import communication.Session;
+import controller.Ventana1Controller;
+import events.OnMessageReceived;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.*;
 import model.Generic;
 import javafx.scene.*;
 
-public class Main extends Application {
+public class Main extends Application implements OnMessageReceived {
 
     public static Stage stage;
-
     public static Session session;
 
     public Main() {
         session = Session.getInstance();
+        session.setMessageReceived(this);
     }
 
     public static void main(String[] args) {
@@ -34,27 +37,8 @@ public class Main extends Application {
     }
 
     public void readMessage() {
-        String s = session.readMessage();
-        Gson gson = new Gson();
+        session.readMessage();
 
-        Generic g = gson.fromJson(s, Generic.class);
-
-        switch (g.getType()) {
-            case "letra":
-                FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Ventana1.fxml"));
-                Parent root;
-                try {
-                    root = fxmlloader.load();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.show();
-                    readMessage();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-        }
     }
 
     public void onConnection() {
@@ -65,13 +49,45 @@ public class Main extends Application {
             root = fxmlloader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
             readMessage();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void onMessageReceived(String msg) {
+        msg = session.getMsg();
+        Gson gson = new Gson();
+
+        Generic g = gson.fromJson(msg, Generic.class);
+
+        if (g != null) {
+            switch (g.getType()) {
+                case "Message":
+                    Platform.runLater(() -> {
+                        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Ventana1.fxml"));
+                        Parent root;
+                        try {
+                            Ventana1Controller ven = new Ventana1Controller();
+                            fxmlloader.setController(ven);
+                            root = (Parent) fxmlloader.load();
+                            Scene scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.show();
+                            readMessage();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+            }
+
+        } else {
+            System.out.println("nulo");
+        }
     }
 
 }

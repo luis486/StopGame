@@ -36,7 +36,6 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 	private ArrayList<Session> sessions;
 	private Queue<Session> sessionQueue;
 	private Gson gson;
-	private Game game;
 
 	@Override
 	public void run() {
@@ -50,6 +49,10 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 
 				Session session = new Session(socket);
 				sessions.add(session);
+
+				if (sessions.size() % 2 == 0) {
+					matchPlayers();
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -88,79 +91,10 @@ public class TPCServer extends Thread implements Receptor.OnMessageListener {
 	public void matchPlayers() {
 
 		new Thread(() -> {
+			Session sess = sessions.get(sessions.size() - 1);
+			Session sess1 = sessions.get(sessions.size() - 2);
 
-			Session sesionUno = null;
-			Session sesionDos = null;
-
-			boolean out = false;
-			for (int i = 0; i < sessions.size() && out == false; i++) {
-				Session tmp = sessions.get(i);
-				if (tmp.isOnGame() == false) {
-					sesionUno = tmp;
-					sesionUno.setOnGame(true);
-					System.out.println(sesionUno.isOnGame());
-					sessions.get(i).setOnGame(true);
-					out = true;
-				}
-			}
-			out = false;
-			for (int i = 0; i < sessions.size() && out == false; i++) {
-				Session tmp = sessions.get(i);
-				if (tmp.isOnGame() == false) {
-
-					sesionDos = tmp;
-					sesionDos.setOnGame(true);
-					sessions.get(i).setOnGame(true);
-					out = true;
-				}
-			}
-			if (sesionUno == null || sesionDos == null) {
-				System.out.println("Alguna sesión es nula");
-			}
-			if (sesionUno != null && sesionDos != null) {
-				Game game = new Game(sesionUno, sesionDos);
-			}
-
-		}).start();
-
-	}
-
-	public void startGame(Session sesionA, Session sesionB) {
-		Message msg = new Message("sendPlayer");
-		Gson gson = new Gson();
-		String message = gson.toJson(msg);
-		sesionA.getEmisor().sendMessage(message);
-		String playerA = sesionA.getReceptor().readMessage();
-		sesionB.getEmisor().sendMessage(message);
-		String playerB = sesionB.getReceptor().readMessage();
-
-		char c = game.randomLetter();
-
-		sesionA.getEmisor().sendMessage(playerB + "//" + c);
-
-		sesionB.getEmisor().sendMessage(playerA + "//" + c);
-
-		new Thread(() -> {
-
-			String a = sesionA.getReceptor().readMessage();
-
-			sesionB.getEmisor().sendMessage(a);
-			String b = sesionB.getReceptor().readMessage();
-			sesionA.getEmisor().sendMessage(b);
-			sesionB.getEmisor().sendMessage("");
-
-			sesionA.getReceptor().readMessage();
-			sesionB.getReceptor().readMessage();
-
-		}).start();
-
-		new Thread(() -> {
-
-			String b = sesionB.getReceptor().readMessage();
-			sesionA.getEmisor().sendMessage(b);
-			String a = sesionA.getReceptor().readMessage();
-			sesionB.getEmisor().sendMessage(a);
-			sesionB.getReceptor().readMessage();
+			Game game = new Game(sess, sess1);
 
 		}).start();
 
