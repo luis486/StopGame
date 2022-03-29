@@ -16,6 +16,22 @@ public class Game {
 
     private int yourPoints;
 
+    private int myNamePoints;
+
+    private int myAnimalPoints;
+
+    private int myLocationPoints;
+
+    private int myObjectPoint;
+
+    private int yourNamePoints;
+
+    private int yourAnimalPoints;
+
+    private int yourLocationPoints;
+
+    private int yourObjectPoints;
+
     public Game(char letter) {
         this.letter = randomLetter();
 
@@ -67,6 +83,70 @@ public class Game {
 
     public void setYourPoints(int yourPoints) {
         this.yourPoints = yourPoints;
+    }
+
+    public int getMyNamePoints() {
+        return this.myNamePoints;
+    }
+
+    public void setMyNamePoints(int myNamePoints) {
+        this.myNamePoints = myNamePoints;
+    }
+
+    public int getMyAnimalPoints() {
+        return this.myAnimalPoints;
+    }
+
+    public void setMyAnimalPoints(int myAnimalPoints) {
+        this.myAnimalPoints = myAnimalPoints;
+    }
+
+    public int getMyLocationPoints() {
+        return this.myLocationPoints;
+    }
+
+    public void setMyLocationPoints(int myLocationPoints) {
+        this.myLocationPoints = myLocationPoints;
+    }
+
+    public int getMyObjectPoint() {
+        return this.myObjectPoint;
+    }
+
+    public void setMyObjectPoint(int myObjectPoint) {
+        this.myObjectPoint = myObjectPoint;
+    }
+
+    public int getYourNamePoints() {
+        return this.yourNamePoints;
+    }
+
+    public void setYourNamePoints(int yourNamePoints) {
+        this.yourNamePoints = yourNamePoints;
+    }
+
+    public int getYourAnimalPoints() {
+        return this.yourAnimalPoints;
+    }
+
+    public void setYourAnimalPoints(int yourAnimalPoints) {
+        this.yourAnimalPoints = yourAnimalPoints;
+    }
+
+    public int getYourLocationPoints() {
+        return this.yourLocationPoints;
+    }
+
+    public void setYourLocationPoints(int yourLocationPoints) {
+        this.yourLocationPoints = yourLocationPoints;
+    }
+
+    public int getYourObjectPoints() {
+        return this.yourObjectPoints;
+    }
+
+    public void setYourObjectPoints(int yourObjectPoints) {
+        this.yourObjectPoints = yourObjectPoints;
     }
 
     public void calculatePoints() {

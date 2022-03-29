@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -80,8 +81,12 @@ public class Ventana1Controller {
             Gson gson = new Gson();
             String respon = gson.toJson(response);
             osm.onSendMessage(respon);
-
         } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("STOP");
+            alert.setHeaderText("ERROR");
+            alert.setContentText("Por favor completa todos los campos!");
+            alert.showAndWait();
 
         }
 
